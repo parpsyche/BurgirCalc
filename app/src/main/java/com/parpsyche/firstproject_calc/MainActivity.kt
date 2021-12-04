@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.text.trimmedLength
+import net.objecthunter.exp4j.ExpressionBuilder
+import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
 
@@ -102,6 +105,26 @@ class MainActivity : AppCompatActivity() {
         }
         divide.setOnClickListener{
             appendText("/",false)
+        }
+        mod.setOnClickListener{
+            appendText("%",false)
+        }
+        backspace.setOnClickListener{
+            temp.text=result.text.trimStart()
+            result.text=""
+        }
+        clear.setOnClickListener{
+            temp.text=""
+            result.text=""
+        }
+        equals.setOnClickListener{
+            try {
+                result.text = ExpressionBuilder(temp.text.toString()).build().evaluate().toString()
+
+            }
+            catch (e : Exception){
+                result.text = e.message
+            }
         }
 
     }
