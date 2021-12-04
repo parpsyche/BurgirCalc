@@ -10,40 +10,43 @@
         android:id="@+id/burger"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#00000000"
+        android:padding="15sp"
+
         android:src="@drawable/menu"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="#00000000"
-        android:padding="15sp"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
+
 
     <ImageButton
-        android:id="@+id/theme"
-        android:text="Day/Night"
-        android:src="@drawable/daynight"
+        android:id="@+id/themedn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:background="#00000000"
-        android:padding="15sp"/>
+        android:padding="15sp"
+        android:src="@drawable/daynight"
+        android:text="Day/Night"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <ImageButton
         android:id="@+id/fullscreen"
-        android:text="Fullscreen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/fullscreen"
-        app:layout_constraintEnd_toStartOf="@+id/theme"
-        app:layout_constraintTop_toTopOf="parent"
         android:background="#00000000"
-        android:padding="15sp"/>
+        android:padding="15sp"
+        android:src="@drawable/fullscreen"
+        android:text="Fullscreen"
+        app:layout_constraintEnd_toStartOf="@+id/themedn"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/temp"
+        style="@style/number"
         android:layout_width="match_parent"
         android:layout_height="100sp"
-        style="@style/number"
         android:textAlignment="textEnd"
         app:layout_constraintBottom_toTopOf="@id/result"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,10 +57,10 @@
 
     <TextView
         android:id="@+id/result"
+        style="@style/number"
         android:layout_width="match_parent"
         android:layout_height="100sp"
         android:textAlignment="textEnd"
-        style="@style/number"
         app:layout_constraintBottom_toTopOf="@id/tableLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -75,8 +78,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1"
-        >
+        app:layout_constraintVertical_bias="1">
 
 
         <TableRow>
@@ -84,18 +86,17 @@
             <TextView
                 android:id="@+id/clear"
                 style="@style/number"
-                android:textColor="@color/teal_700"
                 android:layout_weight="1"
-                android:text="C" />
+                android:text="C"
+                android:textColor="@color/teal_700" />
 
             <ImageView
                 android:id="@+id/backspace"
                 android:layout_height="30sp"
-                android:layout_weight="1"
-
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_outline_backspace_24" />
 
+                android:layout_weight="1"
+                android:src="@drawable/ic_outline_backspace_24" />
 
 
             <TextView
@@ -109,10 +110,10 @@
 
             <TextView
                 android:id="@+id/divide"
-                android:textColor="@color/teal_700"
-
                 style="@style/number"
-                android:text="/" />
+
+                android:text="/"
+                android:textColor="@color/teal_700" />
 
         </TableRow>
 
@@ -139,8 +140,8 @@
             <TextView
                 android:id="@+id/multiply"
                 style="@style/number"
-                android:textColor="@color/teal_700"
-                android:text="*" />
+                android:text="*"
+                android:textColor="@color/teal_700" />
         </TableRow>
 
         <TableRow>
@@ -170,8 +171,7 @@
                 android:id="@+id/plus"
                 style="@style/number"
                 android:text="+"
-                android:textColor="@color/teal_700"
-                />
+                android:textColor="@color/teal_700" />
 
         </TableRow>
 
@@ -202,8 +202,7 @@
                 android:id="@+id/minus"
                 style="@style/number"
                 android:text="-"
-                android:textColor="@color/teal_700"
-                />
+                android:textColor="@color/teal_700" />
         </TableRow>
 
         <TableRow>
@@ -233,8 +232,7 @@
                 android:id="@+id/equals"
                 style="@style/number"
                 android:text="="
-                android:textColor="@color/teal_700"
-                />
+                android:textColor="@color/teal_700" />
 
         </TableRow>
 
