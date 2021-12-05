@@ -118,6 +118,9 @@ class MainActivity : AppCompatActivity() {
         mod.setOnClickListener {
             appendText("%", false)
         }
+        decimal.setOnClickListener{
+            appendText(".", false)
+        }
         backspace.setOnClickListener {
             if(result.text.isEmpty()){
                 if (temp.text.isEmpty())
