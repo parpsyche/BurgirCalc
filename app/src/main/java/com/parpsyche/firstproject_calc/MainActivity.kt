@@ -1,50 +1,49 @@
 package com.parpsyche.firstproject_calc
 
-import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
-import android.widget.*
+import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import net.objecthunter.exp4j.ExpressionBuilder
-import java.lang.Exception
+import com.notkamui.keval.Keval
+import android.media.MediaPlayer
+
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var one: TextView
-    lateinit var two: TextView
-    lateinit var three: TextView
-    lateinit var four: TextView
-    lateinit var five: TextView
-    lateinit var six: TextView
-    lateinit var seven: TextView
-    lateinit var eight: TextView
-    lateinit var nine: TextView
-    lateinit var zero: TextView
-    lateinit var doublezero: TextView
-    lateinit var clear: TextView
-    lateinit var backspace: ImageView
-    lateinit var mod: TextView
-    lateinit var divide: TextView
-    lateinit var multiply: TextView
-    lateinit var add: TextView
+    private lateinit var one: TextView
+    private lateinit var two: TextView
+    private lateinit var three: TextView
+    private lateinit var four: TextView
+    private lateinit var five: TextView
+    private lateinit var six: TextView
+    private lateinit var seven: TextView
+    private lateinit var eight: TextView
+    private lateinit var nine: TextView
+    private lateinit var zero: TextView
+    private lateinit var doublezero: TextView
+    private lateinit var clear: TextView
+    private lateinit var backspace: ImageView
+    private lateinit var mod: TextView
+    private lateinit var divide: TextView
+    private lateinit var multiply: TextView
+    private lateinit var add: TextView
     lateinit var minus: TextView
     lateinit var equals: TextView
-    lateinit var decimal: TextView
-    lateinit var temp: TextView
-    lateinit var result: TextView
-    lateinit var fullscreen:ImageButton
-    lateinit var theme:ImageButton
-    lateinit var burger:ImageButton
-    lateinit var videoView: VideoView
-
+    private lateinit var decimal: TextView
+    private lateinit var temp: TextView
+    private lateinit var result: TextView
+    private lateinit var fullscreen:ImageButton
+    private lateinit var theme:ImageButton
+    var mMediaPlayer: MediaPlayer? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        var uiModeManager = getSystemService(UI_MODE_SERVICE)
 
         clear = findViewById(R.id.clear)
         backspace = findViewById(R.id.backspace)
@@ -120,13 +119,16 @@ class MainActivity : AppCompatActivity() {
             appendText("%", false)
         }
         backspace.setOnClickListener {
-            if (result.text == "") {
-                temp.text = temp.text.subSequence(0, temp.text.lastIndex)
-            } else {
-                temp.text = result.text.subSequence(0, result.text.lastIndex)
-                result.text = ""
+            if(result.text.isEmpty()){
+                if (temp.text.isEmpty())
+                    temp.text=""
+                else
+                    temp.text= temp.text.substring(0,temp.text.length-1)
             }
-
+            else{
+                temp.text=result.text.substring(0,result.text.length-1)
+                result.text=""
+            }
         }
         clear.setOnClickListener {
             temp.text = ""
@@ -134,8 +136,7 @@ class MainActivity : AppCompatActivity() {
         }
         equals.setOnClickListener {
             try {
-                result.text = ExpressionBuilder(temp.text.toString()).build().evaluate().toString()
-
+                result.text = Keval.eval(temp.text.toString()).toString()
             } catch (e: Exception) {
                 result.text = e.message
             }
@@ -145,15 +146,20 @@ class MainActivity : AppCompatActivity() {
             toggleFullScreen()
         }
         theme.setOnClickListener {
-
             if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_NO)
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             else
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-
-
         }
 
+        var burger : ImageButton = findViewById(R.id.burger)
+        burger.setOnClickListener{
+            if (mMediaPlayer == null) {
+                mMediaPlayer = MediaPlayer.create(this, R.raw.burgir)
+                mMediaPlayer!!.isLooping = false
+                mMediaPlayer!!.start()
+            } else mMediaPlayer!!.start()
+        }
 
     }
 
